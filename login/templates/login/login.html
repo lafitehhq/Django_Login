@@ -1,0 +1,96 @@
+{% extends 'login/base.html' %}
+{% load staticfiles %}
+{% block title %}登录{% endblock %}
+{% block css %}
+    <link href="{% static 'login/css/login.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+
+{#<!--下载的表单sample-->#}
+{#<form>#}
+{#  <div class="form-group">#}
+{#    <label for="exampleInputEmail1">Email address</label>#}
+{#    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">#}
+{#  </div>#}
+{#  <div class="form-group">#}
+{#    <label for="exampleInputPassword1">Password</label>#}
+{#    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">#}
+{#  </div>#}
+{#  <div class="form-group">#}
+{#    <label for="exampleInputFile">File input</label>#}
+{#    <input type="file" id="exampleInputFile">#}
+{#    <p class="help-block">Example block-level help text here.</p>#}
+{#  </div>#}
+{#  <div class="checkbox">#}
+{#    <label>#}
+{#      <input type="checkbox"> Check me out#}
+{#    </label>#}
+{#  </div>#}
+{#  <button type="submit" class="btn btn-default">Submit</button>#}
+{#</form>#}
+
+<!--版本1-->
+<div class="container">
+    <div class="col-md-offset-4 col-md-4">
+        <form class="form-login" action="/login/" method="post">
+            {% if message %} <!--写在form表单内，作用是提示后台表单检验信息-->
+                <div class="alert alert-warning"> {{ message }}</div>
+            {% endif %}
+
+            {% csrf_token %} <!--写在form表单内，作用是防止发生跨站请求伪造-->
+
+
+            <h2 class="text-center">欢迎登录</h2>
+              <div class="form-group">
+                <label for="exampleInputEmail1">用户名</label>
+                <input type="text" class="form-control" id="id_username" placeholder="Username" name="username" autofocus required/>
+              </div>
+
+              <div class="form-group">
+                <label for="exampleInputPassword1">密码</label>
+                <input type="password" class="form-control" id="id_password" placeholder="Password" name="password"autofocus required/>
+              </div>
+
+            <button type="reset" class="btn btn-default pull-left">重置</button>
+            <button type="submit" class="btn btn-primary pull-right">提交</button>
+
+        </form>
+    </div>
+</div>
+
+<!--版本2-->
+{#    <div class="container">#}
+{#        <div class="col-md-offset-4 col-md-4">#}
+{#            <form class="form-login" action="/login/" method="post">#}
+{#                {% if message %}#}
+{#                    <div class="alert alert-warning">{{ message }}</div>#}
+{#                {% endif %}#}
+{##}
+{##}
+{#                {% csrf_token %}#}
+{#                <h2 class="text-center">欢迎登录</h2>#}
+{##}
+{#                <div class="form-group">#}
+{#                    {{ login_form.username.label_tag }}#}
+{#                    {{ login_form.username }}#}
+{#                </div>#}
+{#                <div class="form-group">#}
+{#                    {{ login_form.password.label_tag }}#}
+{#                    {{ login_form.password }}#}
+{#                </div>#}
+{#                <div class="form-group">#}
+{#                    {{ login_form.captcha.errors }}#}
+{#                    {{ login_form.captcha.label_tag }}#}
+{#                    {{ login_form.captcha }}#}
+{#                </div>#}
+{##}
+{#                <button type="reset" class="btn btn-default pull-left">重置</button>#}
+{#                <button type="submit" class="btn btn-primary pull-right">提交</button>#}
+{#            </form>#}
+{#        </div>#}
+{#    </div>#}
+
+{% endblock %}
+
+
